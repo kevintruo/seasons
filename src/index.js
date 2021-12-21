@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+    state = { lat: null, errorMessage: ''};
 
-        this.state = { lat: null, errMsg: null};
-
+    componentDidMount(){
         window.navigator.geolocation.getCurrentPosition(
-            position => {
-                this.setState({lat: position.coords.latitude});
-            },
-            err => {
-                this.setState({errMsg: err.message});
-            }
+            position => this.setState({lat: position.coords.latitude}),
+            err => this.setState({errMsg: err.message})
         );
     }
 
+    componentDidUpdate(){
+        console.log("My component was rerendered to the screen");
+    }
     // React says we have to define render
     render() {
         if(this.state.errMsg && !this.state.lat){
@@ -24,7 +22,7 @@ class App extends React.Component {
         } 
 
         if(!this.state.errMsg && this.state.lat){
-            return <div>Latitude {this.state.lat}</div>;
+            return <SeasonDisplay lat={this.state.lat}/>
         }
 
         return <div>Loading!</div>;
