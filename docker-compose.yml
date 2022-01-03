@@ -1,10 +1,9 @@
 version: "3.8"
 services:
   app: 
-    build: 
-      context: .
+    build: .
     volumes: 
-      - .:/app
+      - ./src:/app/src
     ports: 
       - 3000:3000
     image: app:seasons-image
