@@ -1,5 +1,7 @@
+//Import statement
 import React from 'react';
 
+//Component
 const Spinner = (props) => {
     return(
         <div className="ui active dimmer">
@@ -10,6 +12,7 @@ const Spinner = (props) => {
     );
 };
 
+//Default props message in case the message was not intialized
 Spinner.defaultProps = {
     message: 'Loading...'
 }
