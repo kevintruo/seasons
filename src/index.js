@@ -15,8 +15,8 @@ class App extends React.Component {
     componentDidUpdate(){
         console.log("My component was rerendered to the screen");
     }
-    // React says we have to define render
-    render() {
+
+    renderContent(){
         if(this.state.errMsg && !this.state.lat){
             return <div>Error: {this.state.errMsg}</div>;
         } 
@@ -26,6 +26,14 @@ class App extends React.Component {
         }
 
         return <Spinner message="Please accept location request"/>;
+    }
+
+    render() {
+        return (
+            <div className="sample">
+                {this.renderContent()}
+            </div>
+        );
     }
 }
 
